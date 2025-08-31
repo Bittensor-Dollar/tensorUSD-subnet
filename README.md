@@ -1,6 +1,11 @@
+> **Note:**
+> ✅ Registered subnetwork with netuid: 421 on Bittensor testnet.
+
 <div align="center">
 
-# **TAO-Backed StableCoin Subnet** <!-- omit in toc -->
+# **TensorUSD: TAO-Backed StableCoin Subnet** <!-- omit in toc -->
+
+[![Website](https://img.shields.io/badge/Website-tensorusd.com-blue)](https://tensorusd.com)
 [![Discord Chat](https://img.shields.io/discord/308323056592486420.svg)](https://discord.gg/bittensor)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
@@ -25,27 +30,32 @@
 
 ---
 
-## Quickstarter: TAO-Backed StableCoin Subnet
 
-This project implements a TAO-backed stablecoin on Bittensor, providing a decentralized, incentive-driven mechanism for stablecoin issuance and management. The subnet leverages Bittensor's protocol to coordinate validators and miners for stablecoin operations, including minting, redemption, and stability enforcement.
+## Quickstarter: TensorUSD (tensorusd.com)
+
+TensorUSD is a TAO-backed stablecoin subnet, providing a decentralized, incentive-driven mechanism for stablecoin issuance and management. The subnet leverages Bittensor's protocol to coordinate validators and miners for stablecoin operations, including minting, redemption, and stability enforcement.
+
 
 Key features:
 - TAO-backed stablecoin issuance and redemption
 - Decentralized stability mechanism via subnet validators
 - Extensible protocol for custom incentive logic
 - Easy integration with Bittensor's Yuma Consensus
+- Official domain: [tensorusd.com](https://tensorusd.com)
 
 This repository abstracts away blockchain complexity, allowing you to focus on stablecoin logic and incentive design. Customize the protocol and neuron scripts to fit your requirements.
 
+
 ## Introduction
 
-**TAO-Backed StableCoin Subnet**
+**TensorUSD** ([tensorusd.com](https://tensorusd.com))
 
-This subnet enables the creation and management of a stablecoin backed by TAO, the native token of Bittensor. Validators and miners collaborate to maintain the stability and integrity of the stablecoin, using incentive mechanisms and consensus logic defined in the protocol.
+TensorUSD enables the creation and management of a stablecoin backed by TAO, the native token of Bittensor. Validators and miners collaborate to maintain the stability and integrity of the stablecoin, using incentive mechanisms and consensus logic defined in the protocol.
+
 
 The subnet consists of:
-- Stablecoin miners: handle minting, redemption, and reporting operations
-- Stablecoin validators: enforce stability, validate transactions, and score miner performance
+- Stablecoin miners: handle minting, redemption, and reporting operations. **(Testnet: netuid 421)**
+- Stablecoin validators: enforce stability, validate transactions, and score miner performance. **(Testnet: netuid 421)**
 - Custom protocol: defines the rules for stablecoin operations and consensus
 - Integration with Bittensor's Yuma Consensus for onchain coordination
 
@@ -89,8 +99,9 @@ Also update:
 __Note__
 Rename the `template` directory to match your stablecoin project name.
 
-# StableCoin Subnet API
-To interact with the TAO-backed stablecoin subnet, implement a standardized API interface using Bittensor's `SubnetsAPI`. This allows clients to mint, redeem, and query stablecoin operations via exposed axons.
+
+# TensorUSD Subnet API
+To interact with the TensorUSD subnet, implement a standardized API interface using Bittensor's `SubnetsAPI`. This allows clients to mint, redeem, and query stablecoin operations via exposed axons.
 
 Implement the following abstract methods in your API handler:
 - `prepare_synapse`: Prepare stablecoin transaction payloads (mint, redeem, report)
@@ -101,22 +112,22 @@ Example usage:
 from bittensor.subnets import SubnetsAPI
 from StableCoinSubnet import MintSynapse
 
-class StableCoinAPI(SubnetsAPI):
-    def __init__(self, wallet: "bt.wallet"):
-        super().__init__(wallet)
-        self.netuid = <your_netuid>
+class TensorUSDAPI(SubnetsAPI):
+  def __init__(self, wallet: "bt.wallet"):
+    super().__init__(wallet)
+    self.netuid = <your_netuid>
 
-    def prepare_synapse(self, amount: float, recipient: str) -> MintSynapse:
-        # Prepare mint transaction
-        synapse = MintSynapse(amount=amount, recipient=recipient)
-        return synapse
+  def prepare_synapse(self, amount: float, recipient: str) -> MintSynapse:
+    # Prepare mint transaction
+    synapse = MintSynapse(amount=amount, recipient=recipient)
+    return synapse
 
-    def process_responses(self, responses):
-        # Process mint results
-        for response in responses:
-            if response.dendrite.status_code == 200:
-                return response.result
-        return None
+  def process_responses(self, responses):
+    # Process mint results
+    for response in responses:
+      if response.dendrite.status_code == 200:
+        return response.result
+    return None
 ```
 
 # Subnet Links
@@ -145,4 +156,4 @@ This repository is licensed under the MIT License.
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 ```
-# StableCoin-Subnet
+# TensorUSD
